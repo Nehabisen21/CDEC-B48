@@ -1812,7 +1812,7 @@ By mastering these utilities, you'll significantly enhance your ability to handl
 
 ----
 
-# 
+# Managing Processes and Optimizing Performance
 
 ## Understanding Process Priority and Nice Values
 Process priority determines the importance of a process relative to others in the system. In Linux, the `nice` value is used to influence process scheduling by assigning a priority level.
