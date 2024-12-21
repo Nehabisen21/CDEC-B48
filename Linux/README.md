@@ -1686,6 +1686,8 @@ journalctl -u cron
 ```
 
 ---
+
+
 This guide provides comprehensive knowledge of archiving, compression, and automation using CronTab in Linux. Practice these tasks regularly to build expertise.
 
 ---
