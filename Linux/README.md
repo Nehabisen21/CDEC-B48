@@ -1687,6 +1687,165 @@ journalctl -u cron
 
 ---
 
+# Cron Jobs - Automated Task Scheduling in Linux
+
+This guide demonstrates how to schedule tasks in Linux using `cron`. Below are various examples of creating files, directories, and deleting them automatically based on specific schedules.
+
+---
+
+## 1. **Create a File on 29th Dec 2024**
+
+This cron job creates a file `/rajat.txt` on **29th December 2024 at midnight (00:00)**.
+
+### Cron Job:
+
+```bash
+0 0 29 dec * /bin/touch /rajat.txt
+```
+
+### Steps:
+
+1. Change the system date to simulate the execution time:
+
+    ```bash
+    sudo date -s "23:59:50 28 dec 2024"
+    ```
+
+2. Verify the cron job is added by running:
+
+    ```bash
+    crontab -l
+    ```
+
+---
+
+## 2. **Delete File on 30th Dec 2024**
+
+This cron job deletes the file `/rajat.txt` on **30th December 2024 at midnight (00:00)**.
+
+### Cron Job:
+
+```bash
+0 0 30 dec * /bin/rm -f /rajat.txt
+```
+
+### Steps:
+
+1. Change the system date to simulate the execution time:
+
+    ```bash
+    sudo date -s "23:59:50 29 dec 2024"
+    ```
+
+---
+
+## 3. **Create Directory on 10th September 2024 at 20:45**
+
+This cron job creates a directory `/root/rajat` on **10th September 2024 at 20:45**.
+
+### Cron Job:
+
+```bash
+45 20 10 sep * /bin/mkdir -p /root/rajat/
+```
+
+### Steps:
+
+1. Change the system date to simulate the execution time:
+
+    ```bash
+    sudo date -s "2024-09-10 20:45:00"
+    ```
+
+---
+
+## 4. **Create Directory Every Weekday (Monday to Friday) at 7:00 AM**
+
+This cron job creates a directory `/home/student/weekly_dir` **every weekday at 7:00 AM** (Monday to Friday).
+
+### Cron Job:
+
+```bash
+0 7 * * 1-5 /bin/mkdir -p /home/student/weekly_dir
+```
+
+### Steps:
+
+1. Change the system date to simulate the execution time on **Monday at 7:00 AM**:
+
+    ```bash
+    sudo date -s "2024-09-09 07:00:00"
+    ```
+
+---
+
+## 5. **Create a File Every Minute**
+
+This cron job creates a new file every minute with a unique timestamp in the name. The file is saved under `/home/student/`.
+
+### Cron Job:
+
+```bash
+* * * * * /bin/touch /home/student/minute_file_$(date +\%Y\%m\%d_\%H\%M\%S).txt
+```
+
+### Explanation:
+- `* * * * *`: Runs the task **every minute**.
+- `/bin/touch`: Command to create an empty file.
+- `/home/student/minute_file_$(date +\%Y\%m\%d_\%H\%M\%S).txt`: 
+  - Creates a file with a unique name using the date and time format.
+  - `$(date +\%Y\%m\%d_\%H\%M\%S)` generates a timestamp like `20231221_153001`.
+
+---
+
+## Additional Notes:
+
+- **Checking Cron Jobs**: You can check your existing cron jobs with:
+
+    ```bash
+    crontab -l
+    ```
+
+- **Editing Cron Jobs**: You can edit your cron jobs using:
+
+    ```bash
+    crontab -e
+    ```
+
+- **Checking Cron Logs**: If your cron job is not working, check the logs to see if there were any issues:
+
+    ```bash
+    sudo grep CRON /var/log/syslog
+    ```
+
+- **Cron Service**: Ensure the cron service is running:
+
+    ```bash
+    sudo systemctl status cron
+    ```
+
+    If not running, you can start it using:
+
+    ```bash
+    sudo systemctl start cron
+    ```
+
+---
+
+### Conclusion:
+
+With the above cron jobs, you can automate various tasks like file creation, directory creation, and file deletion at specific times. This is a great way to make your Linux system more efficient by automating repetitive tasks!
+
+---
+
+**Happy Scheduling with Cron!**
+
+
+
+
+
+---
+
 
 This guide provides comprehensive knowledge of archiving, compression, and automation using CronTab in Linux. Practice these tasks regularly to build expertise.
 
