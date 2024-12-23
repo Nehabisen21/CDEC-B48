@@ -2109,5 +2109,143 @@ Understanding parent-child relationships among processes helps analyze system be
 
 ---
 
+# **Basic Networking in Linux**
+
+## **Overview of Networking Fundamentals**
+Networking is the process of connecting computers and devices to share resources and communicate. 
+
+### **Key Concepts**:
+- **IP Address**: Identifies devices on a network.
+- **Subnet Mask**: Divides an IP address into network and host parts.
+- **Gateway**: Routes traffic between networks.
+- **DNS (Domain Name System)**: Resolves domain names to IP addresses.
+
+---
+
+## **OSI Model**
+The OSI (Open Systems Interconnection) Model is a conceptual framework used to understand and implement network protocols.
+
+### **Layers**:
+1. **Physical Layer**: Hardware components like cables and switches.
+2. **Data Link Layer**: Responsible for error detection and framing (e.g., Ethernet).
+3. **Network Layer**: Handles routing and IP addressing (e.g., IP protocol).
+4. **Transport Layer**: Ensures reliable communication (e.g., TCP, UDP).
+5. **Session Layer**: Manages sessions between applications.
+6. **Presentation Layer**: Formats data (e.g., encryption, compression).
+7. **Application Layer**: Interfaces with applications (e.g., HTTP, FTP).
+
+---
+
+## **Network Types**
+
+### **LAN (Local Area Network)**:
+- Covers a small geographic area, such as an office.
+- High speed and low latency.
+
+### **MAN (Metropolitan Area Network)**:
+- Covers a city or metropolitan area.
+- Typically used for city-wide connectivity.
+
+### **WAN (Wide Area Network)**:
+- Covers large geographic areas, such as countries or continents.
+- Examples include the internet.
+
+---
+
+## **Types of IPs**
+
+### **Static IP**:
+- Permanently assigned to a device.
+- Commonly used for servers and network devices.
+
+### **Dynamic IP**:
+- Assigned temporarily by a DHCP server.
+- Changes over time.
+
+### **Public IP**:
+- Exposed to the internet.
+- Unique across the globe.
+
+### **Private IP**:
+- Used within private networks.
+- Cannot be accessed directly from the internet.
+
+---
+
+## **IP Address Classes**
+
+### **Public IP Ranges**:
+1. **Class A**: 1.0.0.0 to 126.0.0.0
+   - Large networks.
+   - Subnet mask: 255.0.0.0
+
+2. **Class B**: 128.0.0.0 to 191.255.0.0
+   - Medium-sized networks.
+   - Subnet mask: 255.255.0.0
+
+3. **Class C**: 192.0.0.0 to 223.255.255.0
+   - Small networks.
+   - Subnet mask: 255.255.255.0
+
+### **Private IP Ranges**:
+1. **Class A**: 10.0.0.0 to 10.255.255.255
+2. **Class B**: 172.16.0.0 to 172.31.255.255
+3. **Class C**: 192.168.0.0 to 192.168.255.255
+
+---
+
+## **Basic Network Configuration Steps**
+
+1. **Check Network Interfaces**:
+   ```bash
+   ip link show
+   ```
+2. **Assign an IP Address**:
+   ```bash
+   sudo ip addr add 192.168.1.100/24 dev eth0
+   ```
+3. **Set Default Gateway**:
+   ```bash
+   sudo ip route add default via 192.168.1.1
+   ```
+4. **Test Connectivity**:
+   ```bash
+   ping 8.8.8.8
+   ```
+
+---
+
+## **Example: Configuring a Static IP Address**
+
+### **Step-by-Step Process**:
+1. Check existing network configuration:
+   ```bash
+   ip addr
+   ```
+2. Assign a static IP (`192.168.1.100`) to `eth0`:
+   ```bash
+   sudo ip addr add 192.168.1.100/24 dev eth0
+   ```
+3. Set the default gateway (`192.168.1.1`):
+   ```bash
+   sudo ip route add default via 192.168.1.1
+   ```
+4. Configure DNS by editing `/etc/resolv.conf`:
+   ```bash
+   echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+   ```
+5. Test connectivity:
+   - Ping another device on the network:
+     ```bash
+     ping 192.168.1.1
+     ```
+   - Test internet connectivity:
+     ```bash
+     ping google.com
+     ```
+
+---
+
+
 
 
