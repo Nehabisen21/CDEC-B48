@@ -146,6 +146,8 @@ AWS resources are deployed in Regions and Availability Zones to ensure high avai
 - **Low Latency**: Choose regions close to your users to minimize network delays.
 - **Cost Optimization**: Some regions have lower costs for the same services.
 
+![Sample Image](images/2024-12-30%2010.14.03.gif)
+
 ---
 
 ### 3. **Introduction to EC2 Service**
