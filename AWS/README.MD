@@ -124,7 +124,7 @@ The AWS Management Console is the primary interface for managing AWS resources. 
 - Always verify the active region to avoid deploying resources in unintended locations.
 - Use the Billing Dashboard to track costs and identify unusual usage patterns.
 
-![Sample Image](img/2024-12-30%2010.14.03.gif)
+![Sample Image](img/)
 
 ---
 
