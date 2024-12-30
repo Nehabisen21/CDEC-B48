@@ -103,9 +103,127 @@ Follow these steps to create your AWS account:
 
 ----
 
-- Introduction to AWS Dashboard
-- Region vs Availability Zone (AZ)
-- Introduction to EC2 service
-- Create first Instance of Ubuntu
+# AWS Batch Day 2: Introduction to AWS Dashboard and EC2
 
-create proper notes for students and not looking like ai gunreated also explain properly for my readme.md file
+## Topics Covered
+
+### 1. **Introduction to AWS Dashboard**
+The AWS Management Console is the primary interface for managing AWS resources. It is a web application that allows you to:
+- Access and manage services like EC2, S3, RDS, and Lambda.
+- Monitor your usage and billing.
+- Set up security configurations and permissions.
+
+#### **Key Components of the Dashboard**:
+1. **Navigation Bar**: Displays your logged-in account, active region, and access to global services like billing and support.
+2. **Service Search Bar**: Helps you quickly locate AWS services by name.
+3. **Resource Groups**: Allows grouping and managing related resources.
+4. **Recent Services**: A list of services you used recently for quick access.
+5. **Build a Solution**: Quick links to common tasks such as launching an instance or creating a database.
+
+#### **Best Practices**:
+- Always verify the active region to avoid deploying resources in unintended locations.
+- Use the Billing Dashboard to track costs and identify unusual usage patterns.
+
+---
+
+### 2. **Region vs Availability Zone (AZ)**
+AWS resources are deployed in Regions and Availability Zones to ensure high availability, fault tolerance, and low latency.
+
+#### **Region**:
+- A geographical location, such as **US East (N. Virginia)** or **Asia Pacific (Mumbai)**.
+- Each region is independent and contains multiple Availability Zones.
+- Choose a region based on proximity to your users, compliance requirements, and cost considerations.
+
+#### **Availability Zone (AZ)**:
+- A physically distinct data center within a region.
+- Each AZ is isolated but connected to other AZs in the same region via low-latency links.
+- Example: The **Asia Pacific (Mumbai)** region has three AZs: ap-south-1a, ap-south-1b, and ap-south-1c.
+
+#### **Why Regions and AZs Matter**:
+- **High Availability**: Deploy resources across multiple AZs to ensure uptime during failures.
+- **Low Latency**: Choose regions close to your users to minimize network delays.
+- **Cost Optimization**: Some regions have lower costs for the same services.
+
+---
+
+### 3. **Introduction to EC2 Service**
+Amazon Elastic Compute Cloud (EC2) is a core service for deploying scalable virtual servers in the cloud.
+
+#### **Features**:
+- **Scalability**: Easily scale instances up or down based on demand.
+- **Customizable Instances**: Choose instance types based on CPU, memory, and storage needs.
+- **Secure Access**: Use SSH keys and security groups for secure connections.
+- **Flexible Pricing**:
+  - **On-Demand Instances**: Pay per hour with no long-term commitments.
+  - **Reserved Instances**: Commit for 1-3 years for lower prices.
+  - **Spot Instances**: Bid for unused capacity at discounted rates.
+
+#### **Use Cases**:
+- Hosting web applications.
+- Running batch jobs or machine learning models.
+- Building development and testing environments.
+
+---
+
+### 4. **Creating Your First EC2 Instance (Ubuntu)**
+
+#### **Steps to Launch an EC2 Instance**:
+1. **Navigate to EC2 Service**:
+   - Log in to the AWS Management Console.
+   - Search for "EC2" in the service search bar and select it.
+
+2. **Launch Instance**:
+   - Click on the "Launch Instance" button.
+
+3. **Choose an Amazon Machine Image (AMI)**:
+   - Select **Ubuntu Server 20.04 LTS** (or another version as needed).
+
+4. **Select Instance Type**:
+   - Choose **t2.micro** for free tier eligibility (1 vCPU, 1 GB RAM).
+
+5. **Configure Instance Details**:
+   - Leave the default settings.
+   - Optionally, enable Auto-Assign Public IP for internet access.
+
+6. **Add Storage**:
+   - Keep the default storage size (e.g., 8 GB).
+   - Modify if additional storage is required.
+
+7. **Add Tags**:
+   - Create a tag to identify your instance (e.g., `Key: Name, Value: MyFirstInstance`).
+
+8. **Configure Security Group**:
+   - Create a new security group.
+   - Add an inbound rule to allow **SSH (port 22)** from your IP address.
+
+9. **Review and Launch**:
+   - Verify your settings and click "Launch."
+   - Select an existing key pair or create a new one for SSH access.
+
+10. **Access Your Instance**:
+    - Download the private key file (`.pem`) if creating a new key pair.
+    - Use an SSH client (like PuTTY or Terminal) to connect:
+      ```bash
+      ssh -i /path/to/key.pem ubuntu@<Public-IP-Address>
+      ```
+
+#### **Best Practices**:
+- Always restrict SSH access to specific IP addresses for security.
+- Use Elastic IPs for instances requiring a static public IP.
+
+---
+
+## Resources
+- [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/)
+- [AWS Free Tier Details](https://aws.amazon.com/free/)
+- [SSH Key Management](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+
+---
+
+## Key Takeaways
+- The AWS Dashboard is your central hub for managing cloud resources.
+- Regions and AZs provide resilience and flexibility for deployments.
+- EC2 is a powerful service for launching virtual servers with customizable configurations.
+
+Feel free to experiment with EC2 features and reach out with questions during the session. Let’s build and learn together! 🚀
+
