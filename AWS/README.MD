@@ -230,4 +230,4 @@ Amazon Elastic Compute Cloud (EC2) is a core service for deploying scalable virt
 Feel free to experiment with EC2 features and reach out with questions during the session. Let’s build and learn together! 🚀
 
 
-hello
+Hello
