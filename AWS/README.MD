@@ -101,4 +101,11 @@ Follow these steps to create your AWS account:
 - Understand the differences between IaaS, PaaS, and SaaS.
 - AWS provides a user-friendly interface for cloud services.
 
-Feel free to ask questions during the session. Let’s make learning AWS fun and interactive! 🚀
+----
+
+- Introduction to AWS Dashboard
+- Region vs Availability Zone (AZ)
+- Introduction to EC2 service
+- Create first Instance of Ubuntu
+
+create proper notes for students and not looking like ai gunreated also explain properly for my readme.md file
