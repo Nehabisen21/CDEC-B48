@@ -264,7 +264,125 @@ Security Groups act as virtual firewalls that control inbound and outbound traff
 5. Attach the security group to your instance during or after creation.
 
 ---
+# SSH Service: Secure Shell Basics
 
+## What is SSH?
+SSH (Secure Shell) is a cryptographic network protocol that provides a secure way to access remote servers and systems. It allows administrators and developers to log in, execute commands, and manage resources over an encrypted connection.
+
+---
+
+## Key Features of SSH
+- **Secure Communication**: Uses encryption to secure the connection.
+- **Authentication**: Supports various methods like password-based or key-based authentication.
+- **Port Forwarding**: Allows secure tunneling of other protocols.
+- **File Transfers**: Includes tools like `scp` and `rsync` for transferring files securely.
+- **Session Management**: Offers features like persistent sessions and command execution.
+
+---
+
+## SSH in AWS
+SSH is commonly used in AWS to manage EC2 instances and other Linux-based resources securely.
+
+### Default Settings for AWS EC2:
+- **Port**: 22 (must be open in the security group).
+- **Authentication**: Key-pair (`.pem` file) generated during instance creation.
+
+---
+
+## Setting Up SSH for Remote Access
+
+### 1. **Installing SSH Client**
+Most operating systems come with SSH clients pre-installed. For example:
+- **Linux/MacOS**: SSH is available by default in the terminal.
+- **Windows**: Use `ssh` in PowerShell or install third-party tools like PuTTY.
+
+### 2. **Connect to a Remote Server**
+To connect to a remote server:
+```bash
+ssh -i /path/to/key.pem username@<remote-ip-address>
+```
+- Replace `/path/to/key.pem` with the path to your private key file.
+- Replace `username` with the server's default user (e.g., `ubuntu` for Ubuntu instances).
+- Replace `<remote-ip-address>` with the public IP of the remote server.
+
+---
+
+### 3. **Configuring SSH Access on AWS EC2**
+1. **Verify Security Group**:
+   - Ensure the inbound rule allows SSH (port 22).
+   - Restrict access to your IP address for enhanced security.
+
+2. **Set File Permissions**:
+   ```bash
+   chmod 400 /path/to/key.pem
+   ```
+   This ensures that the private key has the correct permissions.
+
+3. **Connect Using the SSH Command**:
+   ```bash
+   ssh -i /path/to/key.pem ubuntu@<Public-IP>
+   ```
+
+4. **Troubleshooting Connection Issues**:
+   - Verify that the instance is running.
+   - Check the public IP and ensure it matches the instance.
+   - Ensure your IP is allowed in the security group.
+
+---
+
+### 4. **Using SSH Config File**
+Simplify repeated connections by creating an SSH configuration file:
+
+#### Example Config File (`~/.ssh/config`):
+```plaintext
+Host myserver
+    HostName <Public-IP>
+    User ubuntu
+    IdentityFile /path/to/key.pem
+```
+Connect with:
+```bash
+ssh myserver
+```
+
+---
+
+### 5. **Advanced SSH Usage**
+- **Port Forwarding**:
+  Securely access local or remote ports.
+  ```bash
+  ssh -L local_port:remote_host:remote_port user@remote_ip
+  ```
+- **Transfer Files with `scp`**:
+  Copy files securely between local and remote systems.
+  ```bash
+  scp -i /path/to/key.pem file.txt user@<remote-ip>:/path/to/destination
+  ```
+- **Persistent Sessions with `tmux` or `screen`**:
+  Keep SSH sessions active even if the connection drops.
+
+---
+
+## Security Best Practices
+- **Restrict Access**: Limit SSH access to specific IP addresses.
+- **Disable Root Login**: Prevent direct root access by modifying `/etc/ssh/sshd_config`.
+- **Use Strong Keys**: Always use strong, unique key pairs.
+- **Regular Key Rotation**: Replace keys periodically to maintain security.
+
+---
+
+## Resources
+- [Official OpenSSH Documentation](https://www.openssh.com/manual.html)
+- [AWS EC2 Key Pair Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+- [Secure File Transfer with scp](https://linux.die.net/man/1/scp)
+
+---
+
+## Summary
+SSH is an essential tool for securely managing remote servers. By understanding its features and applying best practices, you can ensure secure and efficient access to your resources. Let’s practice setting up and using SSH in our next session! 🚀
+
+
+---
 ### 2. **Create Instance of Windows**
 AWS EC2 supports launching instances with Windows operating systems for various use cases, such as hosting .NET applications or running Windows-based tools.
 
