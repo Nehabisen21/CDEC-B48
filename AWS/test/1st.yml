@@ -15,13 +15,6 @@ spec:
           image: httpd
           ports:
             - containerPort: 80
-        resources:
-          limits:
-            cpu: 15m
-            memory: 100Mi
-          request:
-            cpu: 10m
-            memoty: 50Mi
 
   replicas: 3
 
