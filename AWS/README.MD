@@ -229,7 +229,127 @@ Amazon Elastic Compute Cloud (EC2) is a core service for deploying scalable virt
 - Regions and AZs provide resilience and flexibility for deployments.
 - EC2 is a powerful service for launching virtual servers with customizable configurations.
 
-Feel free to experiment with EC2 features and reach out with questions during the session. Let’s build and learn together! 🚀
+----
 
+# AWS Batch Day 3: Security Groups and Instance Management
+
+## Topics Covered
+
+### 1. **Security Group (SSH and RDP Port)**
+Security Groups act as virtual firewalls that control inbound and outbound traffic for your AWS instances. 
+
+#### **Key Concepts**:
+- **Inbound Rules**: Define the traffic allowed to reach your instance.
+- **Outbound Rules**: Define the traffic allowed to leave your instance.
+- Rules specify:
+  - Protocol (e.g., TCP, UDP, ICMP).
+  - Port Range (e.g., 22 for SSH, 3389 for RDP).
+  - Source (IP address or another security group).
+
+#### **Common Ports**:
+- **SSH (Port 22)**: Used for secure remote access to Linux instances.
+- **RDP (Port 3389)**: Used for remote access to Windows instances.
+
+#### **Best Practices**:
+- Restrict access to specific IP ranges for security.
+- Use custom security groups for different applications or roles.
+
+#### **Steps to Configure a Security Group**:
+1. Open the EC2 Dashboard and navigate to "Security Groups."
+2. Create a new security group.
+3. Add inbound rules:
+   - For SSH: Protocol = TCP, Port = 22, Source = My IP.
+   - For RDP: Protocol = TCP, Port = 3389, Source = My IP.
+4. Add outbound rules (default allows all traffic).
+5. Attach the security group to your instance during or after creation.
+
+---
+
+### 2. **Create Instance of Windows**
+AWS EC2 supports launching instances with Windows operating systems for various use cases, such as hosting .NET applications or running Windows-based tools.
+
+#### **Steps to Launch a Windows Instance**:
+1. **Navigate to EC2**:
+   - Log in to the AWS Management Console.
+   - Search for "EC2" and open the service.
+
+2. **Launch Instance**:
+   - Click on "Launch Instance."
+
+3. **Choose AMI**:
+   - Select a Windows Server AMI, such as **Windows Server 2019 Base**.
+
+4. **Choose Instance Type**:
+   - Select **t2.micro** (free tier eligible).
+
+5. **Configure Instance Details**:
+   - Leave default settings.
+   - Optionally, assign an Elastic IP for a static public IP.
+
+6. **Add Storage**:
+   - Keep the default storage size or increase based on your needs.
+
+7. **Configure Security Group**:
+   - Add an inbound rule for RDP (port 3389).
+
+8. **Launch and Download Key Pair**:
+   - Download the `.pem` key file for accessing the instance.
+
+9. **Retrieve Password**:
+   - After launching, go to the instance details.
+   - Click on "Get Windows Password" and decrypt it using the `.pem` key file.
+
+10. **Connect to the Instance**:
+    - Use Remote Desktop Protocol (RDP) on your local machine:
+      - Hostname: Public IP of the instance.
+      - Username: Administrator.
+      - Password: Retrieved from the AWS console.
+
+---
+
+### 3. **Remote Access of Linux and Windows Machines**
+
+#### **Linux Instance Remote Access**:
+1. **Prerequisites**:
+   - Ensure SSH is allowed in the security group.
+   - Have the `.pem` key file downloaded during instance creation.
+
+2. **Using SSH Command**:
+   ```bash
+   ssh -i /path/to/key.pem ubuntu@<Public-IP>
+   ```
+
+3. **Troubleshooting**:
+   - Verify that the instance is running.
+   - Ensure your local machine's IP is added to the security group.
+
+#### **Windows Instance Remote Access**:
+1. **Enable RDP Access**:
+   - Ensure RDP is allowed in the security group.
+
+2. **Using Remote Desktop Client**:
+   - Open Remote Desktop Connection (Windows) or install an RDP client (Linux/Mac).
+   - Enter the public IP address of the instance.
+   - Use the Administrator username and decrypted password.
+
+3. **Troubleshooting**:
+   - Check the RDP port in the security group.
+   - Ensure the instance has a public IP.
+
+---
+
+## Resources
+- [AWS Security Group Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+- [Launching Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/LaunchingAndUsingInstances.html)
+- [Connecting to Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+
+---
+
+## Key Takeaways
+- Security Groups are essential for controlling access to your instances.
+- RDP and SSH are the primary protocols for remote access to Windows and Linux instances, respectively.
+- Proper configuration of Security Groups ensures both accessibility and security.
+
+Feel free to explore and ask questions during the session. Let’s keep building! 🚀
 
 
