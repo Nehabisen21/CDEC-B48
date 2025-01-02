@@ -468,7 +468,222 @@ AWS EC2 supports launching instances with Windows operating systems for various 
 - RDP and SSH are the primary protocols for remote access to Windows and Linux instances, respectively.
 - Proper configuration of Security Groups ensures both accessibility and security.
 
-Feel free to explore and ask questions during the session. Let’s keep building! 🚀
+
 ----
+
+# SSH Service: Advanced Usage
+
+## Topics Covered
+- **SSH Service (Key-Based Authentication)**
+- **Practical: Create Another Login User**
+- **Deploy Web Server Using NGINX**
+- **Deploy Web Server Using HTTPD**
+
+---
+
+## 1. **SSH Service (Key-Based Authentication)**
+Key-based authentication in SSH replaces password-based authentication with a more secure method using cryptographic keys. This ensures enhanced security and eliminates the risks of brute force attacks.
+
+### **Key Concepts**:
+- **Private Key**: Stays on the client machine and is used to initiate authentication.
+- **Public Key**: Placed on the server in the `~/.ssh/authorized_keys` file.
+- SSH uses the private key to prove the identity of the client.
+
+### **Steps to Set Up Key-Based Authentication**:
+1. **Generate an SSH Key Pair**:
+   ```bash
+   ssh-keygen -t rsa -b 2048 -C "your_email@example.com"
+   ```
+   - `-t rsa`: Specifies the key type.
+   - `-b 2048`: Sets the key size.
+   - `-C`: Adds a comment for identification.
+
+   Save the keys in the default location (`~/.ssh/id_rsa`).
+
+2. **Copy the Public Key to the Server**:
+   ```bash
+   ssh-copy-id -i ~/.ssh/id_rsa.pub user@<server-ip>
+   ```
+   Alternatively, manually copy the contents of `id_rsa.pub` to the server's `~/.ssh/authorized_keys` file.
+
+3. **Test the Connection**:
+   ```bash
+   ssh -i ~/.ssh/id_rsa user@<server-ip>
+   ```
+
+4. **Disable Password Authentication** (Optional):
+   - Edit the SSH configuration file on the server (`/etc/ssh/sshd_config`):
+     ```plaintext
+     PasswordAuthentication no
+     ```
+   - Restart the SSH service:
+     ```bash
+     sudo systemctl restart sshd
+     ```
+
+### **Benefits**:
+- No need to remember complex passwords.
+- Stronger security with encrypted keys.
+- Automated processes (e.g., scripts) become seamless.
+
+---
+
+## 2. **Practical: Create Another Login User**
+Adding a new user to the system allows multiple individuals to securely access and manage the server.
+
+### **Steps to Create a New User**:
+1. **Add a New User**:
+   ```bash
+   sudo adduser <username>
+   ```
+   - Replace `<username>` with the desired username.
+   - Follow the prompts to set a password and additional details.
+
+2. **Add the User to the Sudo Group** (Optional):
+   ```bash
+   sudo usermod -aG sudo <username>
+   ```
+
+3. **Set Up SSH Access**:
+   - Switch to the new user:
+     ```bash
+     su - <username>
+     ```
+   - Create the `.ssh` directory:
+     ```bash
+     mkdir ~/.ssh && chmod 700 ~/.ssh
+     ```
+   - Add the public key:
+     ```bash
+     echo "<public-key>" > ~/.ssh/authorized_keys
+     chmod 600 ~/.ssh/authorized_keys
+     ```
+
+4. **Verify Access**:
+   From your local machine, test SSH access:
+   ```bash
+   ssh -i ~/.ssh/id_rsa <username>@<server-ip>
+   ```
+
+---
+
+## 3. **Deploy Web Server Using NGINX**
+NGINX is a lightweight, high-performance web server and reverse proxy server used to host websites and applications.
+
+### **Steps to Deploy NGINX**:
+1. **Update the Package Manager**:
+   ```bash
+   sudo apt update
+   ```
+
+2. **Install NGINX**:
+   ```bash
+   sudo apt install nginx -y
+   ```
+
+3. **Start and Enable the NGINX Service**:
+   ```bash
+   sudo systemctl start nginx
+   sudo systemctl enable nginx
+   ```
+
+4. **Verify the Installation**:
+   - Open a web browser and navigate to the server's public IP.
+   - You should see the default NGINX welcome page.
+
+5. **Configure the Firewall** (If Enabled):
+   - Allow HTTP and HTTPS traffic:
+     ```bash
+     sudo ufw allow 'Nginx Full'
+     ```
+   - Check the firewall status:
+     ```bash
+     sudo ufw status
+     ```
+
+6. **Host a Custom Website**:
+   - Replace the default content:
+     ```bash
+     sudo nano /var/www/html/index.html
+     ```
+     Add your HTML content and save the file.
+
+7. **Restart NGINX**:
+   ```bash
+   sudo systemctl restart nginx
+   ```
+
+8. **Verify the Website**:
+   - Open the server's public IP in a web browser to view your hosted site.
+
+---
+
+## 4. **Deploy Web Server Using HTTPD**
+HTTPD (Apache HTTP Server) is a widely-used open-source web server known for its flexibility and robustness.
+
+### **Steps to Deploy HTTPD**:
+1. **Update the Package Manager**:
+   ```bash
+   sudo yum update -y
+   ```
+
+2. **Install HTTPD**:
+   ```bash
+   sudo yum install httpd -y
+   ```
+
+3. **Start and Enable the HTTPD Service**:
+   ```bash
+   sudo systemctl start httpd
+   sudo systemctl enable httpd
+   ```
+
+4. **Verify the Installation**:
+   - Open a web browser and navigate to the server's public IP.
+   - You should see the default Apache HTTPD test page.
+
+5. **Configure the Firewall**:
+   - Allow HTTP and HTTPS traffic:
+     ```bash
+     sudo firewall-cmd --permanent --add-service=http
+     sudo firewall-cmd --permanent --add-service=https
+     sudo firewall-cmd --reload
+     ```
+
+6. **Host a Custom Website**:
+   - Navigate to the default document root:
+     ```bash
+     cd /var/www/html
+     ```
+   - Replace or add content to `index.html`:
+     ```bash
+     sudo nano index.html
+     ```
+     Add your HTML content and save the file.
+
+7. **Restart HTTPD**:
+   ```bash
+   sudo systemctl restart httpd
+   ```
+
+8. **Verify the Website**:
+   - Open the server's public IP in a web browser to view your hosted site.
+
+---
+
+## Resources
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [Apache HTTPD Documentation](https://httpd.apache.org/docs/)
+- [OpenSSH Documentation](https://www.openssh.com/manual.html)
+- [Linux User Management Guide](https://linuxize.com/post/how-to-create-a-new-user-on-linux/)
+
+---
+
+## Key Takeaways
+- Key-based authentication is a secure and efficient way to access servers via SSH.
+- Adding new users enables secure multi-user environments.
+- NGINX and HTTPD provide robust platforms for hosting web applications.
+
+Feel free to experiment and ask questions during the session! 🚀
 
 
