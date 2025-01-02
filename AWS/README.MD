@@ -469,5 +469,6 @@ AWS EC2 supports launching instances with Windows operating systems for various 
 - Proper configuration of Security Groups ensures both accessibility and security.
 
 Feel free to explore and ask questions during the session. Let’s keep building! 🚀
+----
 
 
