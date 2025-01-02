@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: <your-dockerhub-repo>/backend:latest # Replace with your Docker Hub image
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "mysql-service" # Internal service name for the database
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: "studentapp"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "1234"
