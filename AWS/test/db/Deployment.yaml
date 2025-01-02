@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: <your-dockerhub-repo>/mysql:latest # Replace with your Docker Hub image
+        image: rajatpzade/mysql # Replace with your Docker Hub image
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "1234"
