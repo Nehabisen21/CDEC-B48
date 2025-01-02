@@ -39,4 +39,8 @@ spec:
     targetPort: 3306
   clusterIP: None
 
-----
+# ----
+
+# docker build -t <your-dockerhub-repo>/mysql:latest .
+# docker push <your-dockerhub-repo>/mysql:latest
+
