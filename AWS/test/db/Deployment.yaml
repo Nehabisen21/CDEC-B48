@@ -44,3 +44,7 @@ spec:
 # docker build -t <your-dockerhub-repo>/mysql:latest .
 # docker push <your-dockerhub-repo>/mysql:latest
 
+Deploy the resources in Kubernetes:
+
+kubectl apply -f mysql-deployment.yaml
+
