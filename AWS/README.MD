@@ -692,7 +692,7 @@ This README provides detailed information about Amazon EC2, covering its dashboa
 
 ---
 
-## **Amazon EC2 Dashboard Overview**
+## Day 5 : **Amazon EC2 Dashboard Overview**
 
 The Amazon EC2 Dashboard provides a centralized interface to manage EC2 resources. Key components of the dashboard include:
 
