@@ -684,6 +684,137 @@ HTTPD (Apache HTTP Server) is a widely-used open-source web server known for its
 - Adding new users enables secure multi-user environments.
 - NGINX and HTTPD provide robust platforms for hosting web applications.
 
-Feel free to experiment and ask questions during the session! 🚀
+------------
+
+# Amazon EC2: Comprehensive Guide
+
+This README provides detailed information about Amazon EC2, covering its dashboard, instance types, status checks, AMIs, launch templates, and purchasing options. The content is organized to ensure clarity and practical usability for users.
+
+---
+
+## **Amazon EC2 Dashboard Overview**
+
+The Amazon EC2 Dashboard provides a centralized interface to manage EC2 resources. Key components of the dashboard include:
+
+- **Instances**: View and manage running instances.
+- **Launch Instances**: Create new EC2 instances using preconfigured settings.
+- **Instance Types**: Explore the various types of instances available.
+- **Elastic Block Store (EBS)**: Manage attached storage volumes.
+- **Key Pairs**: Secure access to instances with SSH keys.
+- **Security Groups**: Configure firewall settings for your instances.
+- **Elastic IPs**: Allocate static public IP addresses to your instances.
+
+---
+
+## **Instance Types**
+
+Amazon EC2 offers a wide range of instance types to suit diverse workloads. Below are the main categories:
+
+### **General Purpose**
+Balanced compute, memory, and storage.
+- Examples: M5, T2, T3, M6a, Mac2
+
+### **Compute Optimized**
+Ideal for compute-intensive tasks.
+- Examples: C5, C6i, C7g
+
+### **Memory Optimized**
+Designed for high-performance databases and memory-intensive applications.
+- Examples: R5, X1, X2idn
+
+### **Storage Optimized**
+For workloads requiring high, sequential read/write access to large data sets.
+- Examples: I3, D2, H1
+
+### **Accelerated Computing**
+Designed for applications requiring GPUs or hardware accelerators.
+- Examples: P3, G5, Inf1
+
+### **High-Performance Computing (HPC)**
+For HPC applications requiring low latency and high performance.
+- Examples: Hpc6a, Hpc7g
+
+[Refer to AWS Instance Types Documentation](https://aws.amazon.com/ec2/instance-types/)
+
+---
+
+## **Status Checks for Amazon EC2 Instances**
+
+### **Overview**
+Amazon EC2 continuously monitors instance health via automated status checks. These checks ensure instances are running without issues.
+
+- **System Status Check**: Verifies the infrastructure hosting your instance is functioning correctly.
+- **Instance Status Check**: Monitors the software and network configuration of your instance.
+
+### **Common Failure Causes**
+- Networking issues
+- Exhausted memory
+- Corrupted file systems
+- Kernel incompatibilities
+
+### **CloudWatch Alarms**
+You can set alarms to monitor status checks and take automated actions, such as instance recovery, if issues are detected.
+
+[Refer to AWS Status Checks Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)
+
+---
+
+## **AMI (Amazon Machine Image)**
+
+### **AMI Types**
+1. **EBS-backed AMI**: Boot volume stored on Amazon EBS.
+2. **Instance-store-backed AMI**: Boot volume stored on local instance storage.
+
+### **Creating an AMI**
+1. Navigate to the EC2 dashboard.
+2. Select the instance you wish to create an AMI from.
+3. Choose **Actions > Image > Create Image**.
+4. Provide the necessary details and click **Create Image**.
+
+### **Copying an AMI**
+You can copy AMIs between regions to enhance redundancy or deploy in multiple regions.
+
+[Refer to AWS AMI Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
+
+---
+
+## **Launch Templates**
+
+Launch templates enable consistent configuration of EC2 instances. They support settings like:
+- AMI ID
+- Instance Type
+- Security Groups
+- Key Pair
+
+### **Creating a Launch Template**
+1. Open the EC2 dashboard.
+2. Navigate to **Launch Templates**.
+3. Click **Create Launch Template**.
+4. Fill in required details, including AMI ID, instance type, and security groups.
+
+[Refer to AWS Launch Template Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
+
+---
+
+## **Purchasing Options**
+
+### **Overview**
+Amazon EC2 offers several purchasing options to optimize costs:
+
+1. **On-Demand Instances**: Pay for instances by the second.
+2. **Savings Plans**: Commit to a consistent usage level for 1 or 3 years.
+3. **Reserved Instances**: Commit to specific configurations for 1 or 3 years.
+4. **Spot Instances**: Use spare EC2 capacity at reduced costs.
+5. **Dedicated Hosts**: Full physical servers for your instances.
+6. **Dedicated Instances**: Single-tenant instances.
+7. **Capacity Reservations**: Reserve capacity in specific AZs.
+
+[Refer to AWS Purchasing Options Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
+
+---
+
+## **Summary**
+This guide provides a foundational understanding of EC2, enabling users to make informed decisions about configuring and managing their instances. Leverage AWS documentation for deeper insights and stay updated with the latest AWS features.
+
 
 
