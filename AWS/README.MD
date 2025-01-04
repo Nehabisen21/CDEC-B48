@@ -844,7 +844,7 @@ Amazon Elastic Block Store (EBS) provides persistent block storage for use with 
 [Refer to AWS EBS Volume Types Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
 
 ---
-![Alt text](![Alt text](image-url "Optional Title")")
+![Alt text]("![alt text](image.png)")
 ---
 
 ## **Attach Volumes, Create Partition, and Mount**
@@ -907,4 +907,9 @@ To make the mount persistent across reboots:
 - **Volume Types**: Include SSDs (gp3, gp2, io1, io2), HDDs (st1, sc1), and magnetic storage.
 - **Operations**: Attach a volume, create partitions, format, and mount it to an EC2 instance.
 
-This guide ensures users can effectively manage and utilize
+This guide ensures users can effectively manage and utilize EBS volumes for their workloads.
+
+
+
+
+
