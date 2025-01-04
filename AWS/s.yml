@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: studentapp-secret
-data:
-  db_pass: cmVkaGF0Cg==
