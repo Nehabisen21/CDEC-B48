@@ -812,6 +812,100 @@ Amazon EC2 offers several purchasing options to optimize costs:
 [Refer to AWS Purchasing Options Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 
 ---
+# EBS Volumes and Operations Guide
+
+This document provides a detailed overview of Amazon Elastic Block Store (EBS) volumes, their types, and step-by-step instructions for attaching volumes, creating partitions, and mounting them to EC2 instances.
+
+---
+
+## **EBS Volumes and Its Types**
+
+Amazon Elastic Block Store (EBS) provides persistent block storage for use with Amazon EC2 instances. These volumes are highly available, reliable, and scalable.
+
+### **Types of EBS Volumes**
+
+1. **General Purpose SSD (gp3, gp2)**
+   - Ideal for a wide range of workloads, including boot volumes, dev/test environments, and low-latency interactive apps.
+   - **gp3** offers predictable IOPS and lower costs compared to **gp2**.
+
+2. **Provisioned IOPS SSD (io1, io2)**
+   - Designed for I/O-intensive applications, such as databases.
+   - Offers high durability and supports features like Multi-Attach.
+
+3. **Throughput Optimized HDD (st1)**
+   - Suitable for frequently accessed, throughput-intensive workloads such as big data and log processing.
+
+4. **Cold HDD (sc1)**
+   - Ideal for infrequently accessed workloads, such as backups and archiving.
+
+5. **Magnetic (Standard)**
+   - Suitable for workloads where data is infrequently accessed.
+
+[Refer to AWS EBS Volume Types Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
+
+---
+
+## **Attach Volumes, Create Partition, and Mount**
+
+### **Attaching an EBS Volume to an EC2 Instance**
+1. Go to the **EC2 Dashboard** on the AWS Management Console.
+2. Select **Volumes** from the left menu.
+3. Choose the volume you want to attach and click **Actions > Attach Volume**.
+4. Select the instance to attach the volume to and click **Attach**.
+
+### **Creating a Partition**
+1. SSH into the EC2 instance to which the volume was attached.
+2. Use the `lsblk` command to list all block devices and confirm the new volume is attached (e.g., `/dev/xvdf`).
+3. Create a partition on the volume using the `fdisk` command:
+   ```bash
+   sudo fdisk /dev/xvdf
+   ```
+   - Press `n` to create a new partition.
+   - Follow the prompts and press `w` to write changes.
+4. Format the partition:
+   ```bash
+   sudo mkfs.ext4 /dev/xvdf1
+   ```
+
+### **Mounting the Volume**
+1. Create a mount directory:
+   ```bash
+   sudo mkdir /mnt/ebs-volume
+   ```
+2. Mount the volume:
+   ```bash
+   sudo mount /dev/xvdf1 /mnt/ebs-volume
+   ```
+3. Verify the volume is mounted:
+   ```bash
+   df -h
+   ```
+
+### **Persisting the Mount (Optional)**
+To make the mount persistent across reboots:
+1. Open the `/etc/fstab` file:
+   ```bash
+   sudo nano /etc/fstab
+   ```
+2. Add the following entry:
+   ```bash
+   /dev/xvdf1   /mnt/ebs-volume   ext4   defaults,nofail   0   2
+   ```
+3. Save the file and exit.
+4. Test the configuration:
+   ```bash
+   sudo mount -a
+   ```
+
+---
+
+## **Summary**
+
+- **EBS Volumes**: Provide persistent, reliable block storage.
+- **Volume Types**: Include SSDs (gp3, gp2, io1, io2), HDDs (st1, sc1), and magnetic storage.
+- **Operations**: Attach a volume, create partitions, format, and mount it to an EC2 instance.
+
+This guide ensures users can effectively manage and utilize EBS volumes for their workloads.
 
 
 
