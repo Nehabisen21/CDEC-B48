@@ -845,6 +845,8 @@ Amazon Elastic Block Store (EBS) provides persistent block storage for use with 
 
 ---
 
+---
+
 ## **Attach Volumes, Create Partition, and Mount**
 
 ### **Attaching an EBS Volume to an EC2 Instance**
