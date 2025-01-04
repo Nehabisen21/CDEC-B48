@@ -3,4 +3,4 @@ kind: Secret
 metadata:
   name: studentapp-secret
 data:
-  database_pass: cmVkaGF0Cg==
+  db_pass: cmVkaGF0Cg==
