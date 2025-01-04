@@ -844,7 +844,7 @@ Amazon Elastic Block Store (EBS) provides persistent block storage for use with 
 [Refer to AWS EBS Volume Types Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
 
 ---
-![WORKFLOW]("![alt text](image.png)")
+![WORKFLOW](!(image.png))
 ---
 
 ## **Attach Volumes, Create Partition, and Mount**
