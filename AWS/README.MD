@@ -813,8 +813,7 @@ Amazon EC2 offers several purchasing options to optimize costs:
 
 ---
 
-## **Summary**
-This guide provides a foundational understanding of EC2, enabling users to make informed decisions about configuring and managing their instances. Leverage AWS documentation for deeper insights and stay updated with the latest AWS features.
+
 
 
 
