@@ -3,4 +3,4 @@ kind: Secret
 metadata:
   name: my-cred
 data:
-  database_pass: Y2xvdWRibGl0eg==
+  database_pass: cmVkaGF0Cg==
