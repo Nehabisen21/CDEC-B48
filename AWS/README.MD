@@ -1045,7 +1045,7 @@ To ensure the partition mounts automatically on reboot:
 - **Snapshots**: Manual and CLI-based snapshot creation.
 - **Automation**: Implement lifecycle policies for scheduled backups.
 
-This guide ensures robust EBS volume management and data backup strategies, helping maintain application availability and disaster recovery readiness.
+
 
 
 
