@@ -1047,6 +1047,120 @@ To ensure the partition mounts automatically on reboot:
 
 ---
 
+# Introduction to NFS and EFS File Systems
+
+## 1. Introduction to NFS (Network File System)
+
+NFS is a distributed file system protocol that allows a user on a client machine to access files over a network in the same way they would access local storage. It provides shared access to files and directories among multiple users and systems.
+
+### Key Features of NFS:
+- Centralized file storage.
+- Access control based on permissions.
+- Transparent file sharing across Linux/UNIX systems.
+- Mounting options to control performance and security.
+
+### Use Cases:
+- Sharing files between Linux servers.
+- Hosting a central repository for team collaboration.
+- Serving home directories for multiple users on a network.
+
+---
+
+## 2. Creating an EFS (Elastic File System)
+
+Amazon Elastic File System (EFS) is a fully managed, scalable, elastic cloud file system for AWS. It supports NFS protocols and is ideal for shared storage in cloud environments.
+
+### Steps to Create an EFS File System:
+
+1. **Log in to the AWS Management Console.**
+   - Navigate to the **EFS** service.
+
+2. **Create a New File System.**
+   - Click on **Create File System**.
+   - Select the VPC in which the file system will operate.
+
+3. **Configure Access Points (Optional).**
+   - Define access points if you require specific user access permissions.
+
+4. **Select Performance and Throughput Modes.**
+   - Performance: General Purpose or Max I/O.
+   - Throughput: Bursting or Provisioned.
+
+5. **Add Tags (Optional).**
+   - Tag your file system for easy identification.
+
+6. **Review and Create.**
+   - Confirm settings and click **Create File System**.
+
+7. **Mount Targets.**
+   - Ensure mount targets are created in each availability zone where you want access.
+
+---
+
+## 3. Attaching and Mounting an EFS File System
+
+### Step 1: Attach EFS to EC2 Instances
+
+1. **Ensure NFS Client is Installed:**
+   - For Amazon Linux:
+     ```bash
+     sudo yum install -y nfs-utils
+     ```
+   - For Ubuntu:
+     ```bash
+     sudo apt update && sudo apt install -y nfs-common
+     ```
+
+2. **Fetch the Mount Command:**
+   - Go to the EFS service in AWS Management Console.
+   - Select your file system and click on **Attach**.
+   - Copy the mount command for the desired instance.
+
+3. **Update Security Groups:**
+   - Allow inbound traffic on port 2049 (NFS) for the EFS Security Group.
+
+### Step 2: Mount the EFS File System
+
+1. **Create a Directory for Mounting:**
+   ```bash
+   sudo mkdir /mnt/efs
+   ```
+
+2. **Mount the File System:**
+   Replace `<file-system-id>` and `<mount-target-endpoint>` with the actual values from your AWS console.
+   ```bash
+   sudo mount -t nfs4 <mount-target-endpoint>:/ /mnt/efs
+   ```
+
+3. **Verify the Mount:**
+   ```bash
+   df -h
+   ```
+   You should see the EFS file system listed in the output.
+
+### Step 3: Enable Permanent Mounting (Optional)
+
+To ensure the file system mounts automatically after a reboot:
+
+1. **Edit the `/etc/fstab` file:**
+   ```bash
+   sudo nano /etc/fstab
+   ```
+
+2. **Add the Following Line:**
+   Replace `<mount-target-endpoint>`:
+   ```
+   <mount-target-endpoint>:/ /mnt/efs nfs4 defaults,_netdev 0 0
+   ```
+
+3. **Test the Configuration:**
+   ```bash
+   sudo mount -a
+   ```
+
+---
+
+By following these steps, you can successfully create, attach, and mount an EFS file system, enabling scalable and shared storage for your applications on AWS.
 
 
 
