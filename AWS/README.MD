@@ -1176,4 +1176,77 @@ This demonstrates EFS's shared storage capability.
 
 ---
 
+# Basics of Networking
 
+Networking is the backbone of modern computing and communication systems. It involves connecting devices to share resources, data, and information efficiently. Key components and concepts of networking include:
+
+## Key Networking Components:
+1. **IP Address (Internet Protocol Address):** A unique identifier assigned to each device on a network. It can be IPv4 (e.g., 192.168.1.1) or IPv6 (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334).
+
+2. **Subnet Mask:** Defines the network and host portions of an IP address. For example, in IPv4, a subnet mask of 255.255.255.0 allows 256 total addresses, of which one is for the network and one for broadcast.
+
+3. **Gateway:** A node that routes traffic from one network to another, typically connecting a private network to the internet.
+
+4. **DNS (Domain Name System):** Translates human-readable domain names (e.g., www.example.com) into IP addresses.
+
+5. **MAC Address (Media Access Control):** A hardware address that identifies devices within a local network.
+
+## Types of Networks:
+- **LAN (Local Area Network):** Small networks, typically within a single location, such as a home or office.
+- **WAN (Wide Area Network):** Large networks spanning geographic locations, such as the internet.
+- **VLAN (Virtual Local Area Network):** Logical segmentation of a LAN for better management and security.
+
+## Networking Protocols:
+1. **TCP/IP (Transmission Control Protocol/Internet Protocol):** Core protocol suite for communication over the internet.
+2. **HTTP/HTTPS:** Protocols for transferring hypertext data (webpages).
+3. **FTP (File Transfer Protocol):** For transferring files over a network.
+4. **SSH (Secure Shell):** For secure remote administration.
+
+---
+
+# CIDR (Classless Inter-Domain Routing)
+
+## What is CIDR?
+Classless Inter-Domain Routing (CIDR) is a method for efficiently allocating IP addresses and routing data. It replaces the older class-based IP addressing system (Class A, B, and C).
+
+## CIDR Notation:
+CIDR uses a suffix to specify the number of significant bits in the subnet mask. The format is:
+
+```
+IP Address/Prefix Length
+```
+For example:
+- `192.168.1.0/24` means the first 24 bits are for the network, and the remaining 8 bits are for hosts.
+
+## CIDR Example:
+### Given `192.168.1.0/24`:
+- **Subnet Mask:** 255.255.255.0
+- **Total IPs:** 256 (2^8 for the last octet)
+- **Usable IPs:** 254 (Subtract 1 for the network and 1 for broadcast address)
+- **Range:** 192.168.1.1 to 192.168.1.254
+
+## Benefits of CIDR:
+1. **Efficient IP Address Allocation:** Prevents waste by allowing subnets of variable sizes.
+2. **Improved Routing Efficiency:** Reduces the size of routing tables by grouping multiple networks under a single prefix.
+3. **Scalability:** Supports hierarchical network design for better scalability.
+
+## Practical Steps:
+
+### Step 1: Understand Your Network Requirements
+- Determine the number of hosts and subnets needed.
+- Choose an IP range and prefix length that accommodates your needs.
+
+### Step 2: Subnetting
+- Use tools like subnet calculators or calculate manually.
+- Example: Subnet `192.168.1.0/24` into smaller subnets like `192.168.1.0/26` and `192.168.1.64/26`.
+
+### Step 3: Configure Networking Devices
+- Assign IP addresses, subnet masks, and gateways to devices.
+- Update DNS records as needed.
+
+### Step 4: Verify Network Configuration
+- Use commands like `ping`, `traceroute`, and `nslookup` to test connectivity and resolve issues.
+
+---
+
+## Better understanding Refer 
