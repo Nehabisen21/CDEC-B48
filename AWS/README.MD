@@ -1251,4 +1251,4 @@ For example:
 
 ## Better understanding Refer Below PDF.
 
-
+/images/
