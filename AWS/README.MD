@@ -1251,5 +1251,5 @@ For example:
 
 ## Better understanding Refer Below PDF.
 
-[Download the PDF](./docs/example.pdf)
+![Download the PDF](./d)
 
