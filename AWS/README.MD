@@ -1251,5 +1251,5 @@ For example:
 
 ## Better understanding Refer Below PDF.
 
-![Download the PDF](./d)
+![Download the PDF](./images/Notes_%20Networks,%20Subnets,%20and%20CIDR.pdf)
 
