@@ -1176,4 +1176,4 @@ This demonstrates EFS's shared storage capability.
 
 ---
 
-By following these detailed steps, you can effectively set up and use NFS and EFS file systems in your AWS environment. Feel free to adapt the configurations to your specific requirements.
+
