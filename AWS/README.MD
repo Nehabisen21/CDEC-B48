@@ -1251,4 +1251,5 @@ For example:
 
 ## Better understanding Refer Below PDF.
 
-/images/
+[Download the PDF](./docs/example.pdf)
+
