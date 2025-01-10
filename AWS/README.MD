@@ -1345,4 +1345,125 @@ A CIDR block is expressed as `IP address/prefix length`. For example, `192.168.0
 
 ---
 
-These steps set the foundation for creating scalable and secure AWS network architectures.
+# Virtual Private Cloud (VPC) Networking Notes
+
+## 1. Create an Internet Gateway (IGW) and Route
+
+### What is an IGW?
+An Internet Gateway is a horizontally scaled, highly available, and redundant VPC component that allows communication between instances in your VPC and the internet.
+
+### Steps to Create an IGW and Attach to VPC:
+1. **Navigate to the AWS Management Console:**
+   - Go to the "VPC" section.
+
+2. **Create an Internet Gateway:**
+   - Select "Internet Gateways" from the left-hand menu.
+   - Click "Create internet gateway."
+   - Provide a name for the IGW (optional).
+   - Click "Create internet gateway."
+
+3. **Attach the IGW to a VPC:**
+   - Select the IGW you just created.
+   - Click "Actions" → "Attach to VPC."
+   - Select the desired VPC from the dropdown list.
+   - Click "Attach internet gateway."
+
+### Create a Route Table and Associate with Subnets:
+1. **Navigate to Route Tables:**
+   - Under the "VPC" dashboard, click "Route Tables."
+
+2. **Create a Route for Internet Access:**
+   - Select the route table associated with the public subnet.
+   - Click on the "Routes" tab and "Edit routes."
+   - Add a route:
+     - **Destination:** `0.0.0.0/0`
+     - **Target:** Select the Internet Gateway ID.
+   - Click "Save routes."
+
+3. **Associate the Route Table with the Subnet:**
+   - Go to the "Subnet Associations" tab.
+   - Click "Edit subnet associations."
+   - Select the public subnet.
+   - Click "Save."
+
+## 2. Launch Private and Public Instances
+
+### Public Instance:
+1. **Ensure Public Subnet Configuration:**
+   - Verify that the subnet is associated with a route table pointing to an Internet Gateway.
+
+2. **Launch an EC2 Instance:**
+   - Navigate to the EC2 dashboard.
+   - Click "Launch Instance."
+   - Select an AMI (e.g., Amazon Linux 2).
+   - Choose an instance type.
+   - In the "Configure Instance" step, select the public subnet.
+   - Enable "Auto-assign Public IP."
+   - Add storage and tags as needed.
+   - Configure a security group to allow SSH (port 22).
+   - Launch the instance.
+
+### Private Instance:
+1. **Ensure Private Subnet Configuration:**
+   - The subnet should not be associated with a route to an Internet Gateway.
+
+2. **Launch an EC2 Instance:**
+   - Follow the same steps as for a public instance.
+   - In the "Configure Instance" step, select the private subnet.
+   - Ensure "Auto-assign Public IP" is disabled.
+
+## 3. NAT Gateway
+
+### What is a NAT Gateway?
+A Network Address Translation (NAT) Gateway enables instances in a private subnet to access the internet while preventing unsolicited inbound traffic from the internet.
+
+### Steps to Create a NAT Gateway:
+1. **Navigate to NAT Gateways:**
+   - Under the "VPC" section, click "NAT Gateways."
+
+2. **Create a NAT Gateway:**
+   - Click "Create NAT gateway."
+   - Select the public subnet.
+   - Allocate an Elastic IP (EIP) for the NAT Gateway.
+   - Click "Create NAT gateway."
+
+3. **Update Route Table for Private Subnet:**
+   - Go to "Route Tables."
+   - Select the route table associated with the private subnet.
+   - Click on the "Routes" tab and "Edit routes."
+   - Add a route:
+     - **Destination:** `0.0.0.0/0`
+     - **Target:** Select the NAT Gateway ID.
+   - Click "Save routes."
+
+## 4. VPC Peering
+
+### What is VPC Peering?
+VPC Peering is a networking connection between two VPCs that enables you to route traffic between them using private IP addresses.
+
+### Steps to Create a VPC Peering Connection:
+1. **Create a Peering Connection:**
+   - Navigate to the "VPC" dashboard.
+   - Click "Peering Connections."
+   - Click "Create peering connection."
+   - Provide a name for the connection.
+   - Select the requester VPC and the accepter VPC (can be in the same or different AWS accounts).
+   - Click "Create peering connection."
+
+2. **Accept the Peering Connection:**
+   - If the accepter VPC is in the same account:
+     - Select the peering connection.
+     - Click "Actions" → "Accept request."
+   - If in a different account, log in to the other account, navigate to "Peering Connections," and accept the request.
+
+3. **Update Route Tables for Communication:**
+   - Go to "Route Tables" in both VPCs.
+   - Edit the routes to allow traffic to the CIDR block of the peer VPC.
+
+4. **Update Security Groups:**
+   - Ensure security group rules allow traffic between instances in the peered VPCs.
+
+---
+
+This guide provides a comprehensive understanding and practical steps for setting up essential VPC networking components.
+
