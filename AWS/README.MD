@@ -1345,6 +1345,7 @@ A CIDR block is expressed as `IP address/prefix length`. For example, `192.168.0
 
 ---
 
+![VPC](images/EBS.png)
 
 ## 1. Create an Internet Gateway (IGW) and Route
 
