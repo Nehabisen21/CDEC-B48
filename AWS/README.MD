@@ -1464,5 +1464,99 @@ VPC Peering is a networking connection between two VPCs that enables you to rout
 
 ---
 
-This guide provides a comprehensive understanding and practical steps for setting up essential VPC networking components.
+# Networking, Elastic IPs, Placement Groups, and Security
+
+## NIC (Network Interface Controller) and Elastic IP
+
+### NIC (Network Interface Controller)
+A Network Interface Controller (NIC) in AWS is also referred to as an Elastic Network Interface (ENI). It is a virtual network interface that you can attach to an instance in a Virtual Private Cloud (VPC). ENIs provide network connectivity for instances and include attributes such as a private IPv4 address, an IPv6 address (optional), security groups, a MAC address, and a source/destination check flag.
+
+#### Key Features of NIC:
+- **Primary Network Interface**: Automatically created with every instance and cannot be detached.
+- **Secondary Network Interfaces**: Can be attached or detached from instances, offering flexibility in multi-network configurations.
+- **Custom Configuration**: Security groups, IP addresses, and MAC addresses can be customized.
+
+#### Practical Steps to Manage ENIs:
+1. Navigate to the **EC2 Dashboard** in the AWS Management Console.
+2. Select **Network Interfaces** from the left-hand menu.
+3. Create a new ENI by providing the VPC, Subnet, and security group details.
+4. Attach the ENI to an instance from the **Actions** menu.
+
+### Elastic IP
+An Elastic IP (EIP) is a static IPv4 address designed for dynamic cloud computing. You can associate an EIP with your instance or ENI to allow external internet access.
+
+#### Key Features of Elastic IP:
+- **Static**: Remains unchanged unless manually released.
+- **Reassignable**: Can be reassigned between instances in your account.
+- **One Free IP**: AWS provides one Elastic IP per account without cost if it is associated with a running instance.
+
+#### Practical Steps to Assign an Elastic IP:
+1. Go to the **EC2 Dashboard** in the AWS Management Console.
+2. Select **Elastic IPs** from the left-hand menu.
+3. Click **Allocate Elastic IP address**.
+4. Associate the EIP with an instance or network interface.
+
+---
+
+## Placement Groups
+AWS Placement Groups are logical groupings of instances that allow applications to meet specific performance or redundancy requirements.
+
+### Types of Placement Groups:
+1. **Cluster Placement Group**:
+   - Instances are placed close together within a single Availability Zone.
+   - High throughput and low latency.
+   - Ideal for HPC (High-Performance Computing) and big data workloads.
+
+2. **Spread Placement Group**:
+   - Instances are placed across different hardware within an Availability Zone.
+   - Increases fault tolerance.
+   - Ideal for small critical workloads.
+
+3. **Partition Placement Group**:
+   - Instances are divided into logical partitions.
+   - Each partition is isolated from others.
+   - Used for large distributed and replicated workloads such as HDFS, HBase, and Cassandra.
+
+#### Practical Steps to Create a Placement Group:
+1. Open the **EC2 Dashboard** in the AWS Management Console.
+2. Select **Placement Groups** from the left-hand menu.
+3. Click **Create Placement Group** and provide a name.
+4. Choose the type of placement group and add the instances during or after creation.
+
+---
+
+## NACL (Network Access Control List) vs Security Group
+
+### NACL (Network Access Control List):
+- Acts as a firewall for controlling traffic in and out of one or more subnets.
+- Operates at the subnet level.
+- **Stateless**: Rules need to be explicitly defined for both inbound and outbound traffic.
+- Supports rules by rule number with allow and deny actions.
+
+### Security Group:
+- Acts as a firewall for controlling traffic to and from an instance.
+- Operates at the instance level.
+- **Stateful**: Automatically allows responses to inbound traffic.
+- Only supports allow rules.
+
+### Key Differences:
+| Feature                | NACL                         | Security Group             |
+|------------------------|------------------------------|----------------------------|
+| Scope                  | Subnet-level                 | Instance-level             |
+| State                  | Stateless                    | Stateful                   |
+| Rule Actions           | Allow and Deny               | Allow only                 |
+| Default Behavior       | Allows all traffic by default| Denies all traffic by default|
+
+#### Practical Steps to Manage NACL:
+1. Navigate to the **VPC Dashboard** in the AWS Management Console.
+2. Select **Network ACLs** from the left-hand menu.
+3. Create a new NACL and associate it with subnets.
+4. Add inbound and outbound rules as required.
+
+#### Practical Steps to Manage Security Groups:
+1. Open the **EC2 Dashboard**.
+2. Select **Security Groups** from the left-hand menu.
+3. Create a new security group by specifying rules for inbound and outbound traffic.
+4. Attach the security group to instances during or after launch.
+
 
