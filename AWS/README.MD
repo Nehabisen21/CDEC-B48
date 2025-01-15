@@ -1561,3 +1561,87 @@ AWS Placement Groups are logical groupings of instances that allow applications 
 4. Attach the security group to instances during or after launch.
 
 
+----
+
+# Introduction to Load Balancer
+
+A Load Balancer in AWS is a service that automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, and IP addresses. It acts as a "traffic cop," ensuring no single resource is overwhelmed, thereby improving application availability and reliability.
+
+Load Balancers are designed to handle varying loads of application traffic while automatically scaling up or down based on demand. AWS offers Elastic Load Balancing (ELB), which supports three types of Load Balancers: Application Load Balancer, Network Load Balancer, and Gateway Load Balancer.
+
+---
+
+## Load Balancer and Its Types
+
+AWS provides the following types of Load Balancers:
+
+1. **Application Load Balancer (ALB):**
+   - Operates at the **application layer** (Layer 7 of the OSI model).
+   - Best suited for HTTP and HTTPS traffic.
+   - Supports advanced request routing, based on URL, hostname, query string, or headers.
+   - Features include WebSocket support, SSL termination, and integration with AWS Web Application Firewall (WAF).
+
+2. **Network Load Balancer (NLB):**
+   - Operates at the **transport layer** (Layer 4 of the OSI model).
+   - Designed for TCP, UDP, and TLS traffic.
+   - Best for high-performance use cases that require extremely low latency.
+   - Provides static IP addresses and preserves the source IP of the client.
+
+3. **Gateway Load Balancer (GWLB):**
+   - Designed to deploy, scale, and manage third-party virtual appliances such as firewalls, intrusion detection, and prevention systems.
+   - Operates at Layer 3 (network layer).
+
+---
+
+## Difference: Application Load Balancer vs. Network Load Balancer
+
+| Feature                     | Application Load Balancer (ALB)           | Network Load Balancer (NLB)           |
+|-----------------------------|-------------------------------------------|---------------------------------------|
+| **OSI Layer**              | Layer 7 (Application Layer)               | Layer 4 (Transport Layer)            |
+| **Traffic Type**           | HTTP, HTTPS                               | TCP, UDP, TLS                        |
+| **Routing**                | Content-based (URL, headers, etc.)        | Connection-based                     |
+| **Performance**            | Optimized for web applications            | High throughput and low latency      |
+| **Source IP Preservation** | Not preserved (uses Load Balancer IP)     | Preserved                            |
+| **Use Case**               | Web applications, microservices           | Gaming, real-time communication      |
+| **Static IP Support**      | No                                        | Yes                                  |
+| **WebSocket Support**      | Yes                                       | No                                   |
+
+---
+
+## Practical Steps
+
+### Step 1: Create a Load Balancer
+1. **Navigate to the EC2 Dashboard:**
+   - Log in to the AWS Management Console.
+   - Go to **Services** > **EC2** > **Load Balancers**.
+
+2. **Select Load Balancer Type:**
+   - Choose **Application Load Balancer** or **Network Load Balancer** depending on your use case.
+
+3. **Configure Load Balancer Settings:**
+   - Provide a name for the Load Balancer.
+   - Select the **Scheme** (Internet-facing or internal).
+   - Choose **IP address type** (IPv4 or dualstack).
+
+4. **Configure Listeners:**
+   - Define listener ports and protocols (e.g., HTTP:80, HTTPS:443).
+
+5. **Configure Target Group:**
+   - Specify the target type (Instance, IP, or Lambda).
+   - Provide health check settings to ensure targets are healthy.
+
+6. **Review and Create:**
+   - Review the settings and click **Create Load Balancer**.
+
+### Step 2: Attach Targets
+- Register your EC2 instances or other resources with the Target Group.
+- Ensure that your instances are in the same VPC as the Load Balancer.
+
+### Step 3: Test Load Balancer
+- Access the DNS name of the Load Balancer from your browser or use tools like `curl` to test the setup.
+
+---
+
+Let me know if you need more details or assistance with implementation!
+
+
