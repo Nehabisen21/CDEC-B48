@@ -1644,4 +1644,128 @@ AWS provides the following types of Load Balancers:
 
 Let me know if you need more details or assistance with implementation!
 
+------
+
+# Auto Scaling and its Types
+
+Auto Scaling in AWS helps maintain application availability by automatically adjusting capacity to ensure stable and predictable performance. Auto Scaling dynamically scales the number of EC2 instances based on demand.
+
+## Types of Auto Scaling:
+
+1. **Dynamic Scaling**
+   - Automatically adjusts the number of instances based on demand.
+   - Uses scaling policies like Target Tracking, Simple Scaling, and Step Scaling.
+
+2. **Scheduled Scaling**
+   - Allows you to scale at specific times based on predictable load changes.
+   - Useful for applications with known peak hours.
+
+3. **Predictive Scaling**
+   - Uses machine learning to forecast future traffic and scales resources proactively.
+   - Reduces latency and ensures application availability.
+
+---
+
+# Create Launch Template
+
+A Launch Template simplifies the process of configuring and launching EC2 instances. Follow these steps:
+
+1. **Navigate to EC2 Console:**
+   - Log in to AWS Management Console.
+   - Go to the EC2 Dashboard.
+
+2. **Create Launch Template:**
+   - Select **Launch Templates** from the left menu.
+   - Click **Create Launch Template**.
+
+3. **Configure the Template:**
+   - **Launch Template Name:** Provide a descriptive name.
+   - **Template Version Description:** Optional but useful for versioning.
+   - **AMI ID:** Choose an Amazon Machine Image.
+   - **Instance Type:** Select the instance type (e.g., t2.micro).
+   - **Key Pair:** Choose an existing key pair or create a new one.
+   - **Network Settings:** Configure security groups and VPC settings.
+   - **Storage:** Specify root volume size and additional storage if needed.
+
+4. **Review and Create:**
+   - Review the details.
+   - Click **Create Launch Template**.
+
+---
+
+# Create Auto Scaling Group (Demo)
+
+1. **Navigate to Auto Scaling Groups:**
+   - In the EC2 Dashboard, select **Auto Scaling Groups**.
+
+2. **Create Auto Scaling Group:**
+   - Click **Create Auto Scaling Group**.
+
+3. **Basic Configuration:**
+   - **Group Name:** Enter a descriptive name.
+   - **Launch Template:** Select the previously created Launch Template.
+
+4. **Network Settings:**
+   - Select a VPC and subnets where the instances will launch.
+
+5. **Set Scaling Policies:**
+   - Choose scaling policies like Target Tracking, Step Scaling, or Simple Scaling.
+   - Optionally configure notifications and tags.
+
+6. **Review and Create:**
+   - Review all settings and click **Create Auto Scaling Group**.
+
+---
+
+# Demo Auto Scaling using Stress Command
+
+1. **Launch Instances:**
+   - Ensure Auto Scaling is set up with dynamic scaling policies.
+
+2. **Install Stress Tool:**
+   - SSH into an instance.
+   - Install the stress tool:
+     ```bash
+     sudo yum install -y stress
+     ```
+
+3. **Simulate Load:**
+   - Run the following command to simulate high CPU usage:
+     ```bash
+     stress --cpu 2 --timeout 300
+     ```
+   - Monitor the Auto Scaling Group as it adjusts the number of instances.
+
+---
+
+# Scheduled Scaling Theory
+
+Scheduled Scaling enables pre-planned scaling adjustments based on known traffic patterns. For example:
+
+- Scale up to 10 instances every day at 8 AM.
+- Scale down to 2 instances at 10 PM.
+
+**Steps to Configure:**
+- Navigate to Auto Scaling Group settings.
+- Add a scheduled action.
+- Define the time and desired capacity.
+
+---
+
+# Predictive Scaling Theory
+
+Predictive Scaling uses machine learning to forecast traffic and scales resources in advance. It analyzes historical data to:
+
+- Anticipate usage trends.
+- Provision resources proactively.
+
+**Advantages:**
+- Reduced latency.
+- Optimized cost by avoiding over-provisioning.
+
+Predictive Scaling can be configured through AWS Auto Scaling policies with minimal manual intervention.
+
+---
+
+With these configurations, you can ensure that your application remains scalable and cost-efficient while meeting user demands effectively.
 
