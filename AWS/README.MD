@@ -1902,3 +1902,11 @@ AWS Identity and Access Management (IAM) allows you to manage access to AWS serv
 4. **Test Role Functionality:**
    - Access the AWS service using the assigned role.
    - Validate permissions by performing actions defined in the role's policies.
+
+
+
+# This is a heading
+
+<span style="color:blue">This text is blue.</span>
+
+<span style="color:red">This text is red.</span>
