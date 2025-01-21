@@ -1916,3 +1916,10 @@ AWS Identity and Access Management (IAM) allows you to manage access to AWS serv
 <span style="color:blue">This text is blue.</span>
 
 <span style="color:red">This text is red.</span>
+
+
+# Project Overview
+
+<div style="background-color: #f2f2f2; padding: 10px;">
+  This is a block of text with a light gray background.
+</div>
