@@ -1771,7 +1771,7 @@ With these configurations, you can ensure that your application remains scalable
 
 ----
 
-#  <span style="color:blue">This text is blue.</span> IAM Services: Notes and Practical Guide
+#  <span style="color:blue">IAM Services: Notes and Practical Guide.</span> 
 
 ## Today's Agenda
 
