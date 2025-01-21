@@ -1920,6 +1920,6 @@ AWS Identity and Access Management (IAM) allows you to manage access to AWS serv
 
 # Project Overview
 
-<div style="background-color: #f2f2f2; padding: 10px;">
+<div style="background-color: #f3f3f3; padding: 10px;">
   This is a block of text with a light gray background.
 </div>
