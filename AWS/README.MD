@@ -1903,6 +1903,132 @@ AWS Identity and Access Management (IAM) allows you to manage access to AWS serv
    - Access the AWS service using the assigned role.
    - Validate permissions by performing actions defined in the role's policies.
 
+------
+
+# Amazon S3: Object Storage and Management
+
+## Agenda
+- **Introduction to S3**
+- **Create Bucket**
+- **Upload Objects**
+- **S3 Properties**
+- **Versioning, Static Website Hosting, Server Access Logging**
+
+---
+
+### 🌟 **Introduction to S3**
+Amazon S3 (Simple Storage Service) is a scalable, secure, and durable object storage service offered by AWS. It allows users to store and retrieve any amount of data at any time, from anywhere on the web.
+
+#### Key Features:
+- Unlimited storage capacity.
+- 99.999999999% durability.
+- Supports multiple storage classes for different use cases.
+- Secure data with encryption and access control.
+- Lifecycle policies to automate object management.
+
+---
+
+### 🛠️ **Create Bucket**
+#### Steps to Create an S3 Bucket:
+1. **Navigate to the S3 Console:**
+   - Log in to the AWS Management Console.
+   - Open the S3 service.
+
+2. **Create a New Bucket:**
+   - Click **Create Bucket**.
+   - Enter a unique bucket name.
+   - Choose a region close to your users for reduced latency.
+
+3. **Configure Bucket Settings:**
+   - **Block Public Access:** Choose whether to block public access.
+   - **Versioning:** Enable or disable versioning.
+   - **Default Encryption:** Enable server-side encryption.
+
+4. **Review and Create:**
+   - Review the configurations.
+   - Click **Create Bucket**.
+
+---
+
+### 📤 **Upload Objects**
+#### Steps to Upload Files:
+1. Open the created bucket.
+2. Click **Upload**.
+3. Drag and drop files or browse to select files.
+4. Configure optional settings such as storage class and encryption.
+5. Click **Upload** to store the object.
+
+---
+
+### 🔧 **S3 Properties**
+S3 buckets come with various properties for customization:
+- **Versioning:**
+  - Maintains multiple versions of an object.
+  - Protects against accidental overwrites or deletions.
+
+- **Static Website Hosting:**
+  - Host static content such as HTML, CSS, and JavaScript.
+  - Configure an index document and optional error document.
+
+- **Server Access Logging:**
+  - Records access requests for auditing.
+  - Logs are stored in a specified bucket.
+
+- **Lifecycle Policies:**
+  - Automates transitioning objects to different storage classes.
+  - Configures object expiration for cost efficiency.
+
+---
+
+### 🌍 **Versioning, Static Website Hosting, and Server Access Logging**
+
+#### **Versioning:**
+1. Open the bucket.
+2. Go to **Properties** > **Versioning**.
+3. Enable versioning to maintain object versions.
+
+#### **Static Website Hosting:**
+1. Navigate to the bucket.
+2. Open **Properties** > **Static Website Hosting**.
+3. Enable hosting and configure index and error documents.
+4. Use the provided bucket endpoint for access.
+
+#### **Server Access Logging:**
+1. Open the bucket.
+2. Go to **Properties** > **Server Access Logging**.
+3. Specify a target bucket to store logs.
+
+---
+
+### 💻 **Practical Tasks**
+
+1. **Create a Bucket:**
+   - Create a bucket named `my-first-s3-bucket-[your-initials]`.
+   - Enable versioning during setup.
+
+2. **Upload an Object:**
+   - Upload an image or text file to the bucket.
+   - Enable server-side encryption.
+
+3. **Host a Static Website:**
+   - Upload an `index.html` file.
+   - Enable static website hosting and test the endpoint.
+
+4. **Enable Server Access Logging:**
+   - Configure logging for your bucket.
+   - Verify log files in the target bucket.
+
+5. **Test Versioning:**
+   - Upload a file with the same name multiple times.
+   - View and restore previous versions.
+
+---
+
+### 🎯 **Key Takeaways**
+- Amazon S3 offers robust storage with versatile management features.
+- Versioning protects data from unintended overwrites or deletions.
+- Static website hosting allows for easy deployment of web content.
+- Server access logging provides valuable insights into bucket usage.
 
 
 
