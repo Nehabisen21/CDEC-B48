@@ -2031,9 +2031,6 @@ S3 buckets come with various properties for customization:
 - Server access logging provides valuable insights into bucket usage.
 
 
------
-
-
 ---
 
 ## Storage Classes
