@@ -2254,7 +2254,9 @@ aws s3 rm s3://<bucket-name>/<object-key>
 ```bash
 aws s3 sync <local-folder-path> s3://<bucket-name>/
 ```
- ### 6. remove empty to S3
+### 6. Sync Local Folder to S3
+aws s3 rm s3://cbz14buck  --recursive
+ ### 8. remove empty to S3
  ```
  
 aws s3api delete-bucket --bucket cbz14buck  --region  ap-south-1
