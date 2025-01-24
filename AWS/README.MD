@@ -2390,6 +2390,8 @@ aws ec2 associate-route-table --subnet-id <subnet-id> --route-table-id <route-ta
 4. Create a VPC, subnet, and attach an Internet Gateway.
 5. Test IAM user permissions by creating a policy and restricting actions.
 
+## Refer:https://docs.aws.amazon.com/cli/latest/
+
 These hands-on tasks will help reinforce the understanding and practical usage of AWS CLI commands.
 
 
