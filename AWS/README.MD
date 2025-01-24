@@ -2256,7 +2256,9 @@ aws s3 sync <local-folder-path> s3://<bucket-name>/
 ```
  ### 6. remove empty to S3
  ```
- aws s3api delete-bucket --bucket cbz14buck  --region  ap-south-1
+ 
+aws s3api delete-bucket --bucket cbz14buck  --region  ap-south-1
+```
 ---
 
 ## AWS CLI Commands for EC2 Management
