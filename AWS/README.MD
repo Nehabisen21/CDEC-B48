@@ -2254,7 +2254,7 @@ aws s3 rm s3://<bucket-name>/<object-key>
 ```bash
 aws s3 sync <local-folder-path> s3://<bucket-name>/
 ```
-### 6. Sync Local Folder to S3
+### 87. empty to S3
 aws s3 rm s3://cbz14buck  --recursive
  ### 8. remove empty to S3
  ```
